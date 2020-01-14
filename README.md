@@ -1,5 +1,5 @@
 # Cirquity Blockchain Explorer
-Block explorer for Cirquity CryptoNote based cryptocurrency.
+Block explorer for Cirquity, CryptoNote based cryptocurrency.
 
 #### Installation
 
