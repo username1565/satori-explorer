@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $data_string = '{"jsonrpc":"2.0","id":"test","method":"getlastblockheader","params":" "}';
 
 $ch = curl_init('http://127.0.0.1:44016/json_rpc');
@@ -28,7 +27,6 @@ curl_close($ch);
 
 $data_string2 = '{"jsonrpc":"2.0","id":"test","method":"f_block_json","params":{"hash":"'.$hash.'"}}';
 
-
 $ch2 = curl_init('http://127.0.0.1:11898/json_rpc');
 curl_setopt($ch2, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($ch2, CURLOPT_POSTFIELDS, $data_string2);
@@ -52,4 +50,3 @@ $supply  = number_format($supply / 100, 2, ".", "");
 print_r($supply);
 
 curl_close($ch2);
-?>
