@@ -8,7 +8,7 @@ let symbol = 'CIRQ';
 let refreshDelay = 30000;
 let networkStat = {
  "cirq": [
-	 ["pool.cirquity.com", "https://pool.cirquity.com"]
+	 ["pool.cirquity.com", "https://api-pool.cirquity.com"]
  ]
 };
 
