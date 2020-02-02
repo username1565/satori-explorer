@@ -1,0 +1,30 @@
+.hero {
+  padding-bottom: 0;
+
+  .container {
+    > .row {
+      padding-top: 7em;
+    }
+  }
+
+  .device {
+    .screen {
+      position: relative;
+
+      .laptop {
+        position: relative;
+        z-index: 2;
+      }
+      .illustration {
+        position: absolute;
+        left: 4.4em;
+        width: 25em;
+        top: 1.5em;
+        z-index: 1;
+        height: 16.7em;
+        opacity: 0.65;
+      }
+    }
+  }
+}
+

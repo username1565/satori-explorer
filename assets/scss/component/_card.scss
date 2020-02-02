@@ -1,0 +1,40 @@
+@import "node_modules/bootstrap/scss/variables";
+
+.card {
+  .card-header {
+    padding: 1.5rem 1.25rem;
+
+    &.no-border {
+      border-bottom-width: 0;
+    }
+  }
+  .card-footer {
+
+    &.no-border {
+      border-top-width: 0;
+    }
+  }
+
+  > .table {
+    thead {
+      th {
+        border-top-width: 0;
+      }
+    }
+  }
+
+  > .card-group {
+    .card {
+      border-top-width: 0;
+      border-bottom-width: 0;
+
+      &:first-child {
+        border-left-width: 0;
+      }
+
+      &:last-child {
+        border-right-width: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import "variables";
+@import "node_modules/bootstrap/scss/functions";
+
+html,
+body {
+  height: 100%;
+}
+
+ul, ol {
+  padding: 0;
+  margin: 0;
+}
+
+section {
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+
+  .title {
+    margin-bottom: 60px;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+}
+
+label {
+  font-size: .75em;
+  text-transform: uppercase;
+}
+
+.text-icon {
+  color: $icon-color;
+}
+
+.sub-heading {
+  color: gray("700");
+  margin-bottom: 4em;
+}
+
+.shadow-light {
+  box-shadow: 0 1.5rem 4rem rgba($body-color, .05);
+}

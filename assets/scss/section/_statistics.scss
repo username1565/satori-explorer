@@ -1,0 +1,15 @@
+.statistics {
+  h5 {
+    font-size: 1.0625rem;
+  }
+
+  .card {
+    .list-group {
+      .list-group-item {
+        &.d-none {
+          display: none !important;
+        }
+      }
+    }
+  }
+}

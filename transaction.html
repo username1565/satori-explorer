@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link link-scroll active" href="index.html">Block Explorer <span class="sr-only">(current)</span></a>
+                            <a class="nav-link link-scroll" href="index.html">Block Explorer</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link link-scroll" href="check.html">Transactions</a>
@@ -78,74 +78,86 @@
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-12">
-                        <div class="card-group card-border shadow-light">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="list-group list-group-flush">
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1" id="networkHeight"></h5>
-                                                <p class="font-size-sm text-muted mb-0">Height</p>
+                        <div class="card shadow-light">
+                            <div class="card-header font-weight-bold text-muted">
+                                <div class="row align-items-center">
+                                    <div class="col-12 col-md">
+                                        <h6 class="m-0">Transaction</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h5 class="mb-0" id="transaction-hash"></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-group card-border">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item d-flex align-items-center">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-confirmations"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Confirmations</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1" id="networkDifficulty"></h5>
-                                                <p class="font-size-sm text-muted mb-0">Difficulty</p>
+                                            <div class="list-group-item d-flex align-items-center">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-timestamp"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">First confirmation time</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1" id="networkTransactions"></h5>
-                                                <p class="font-size-sm text-muted mb-0">Transactions</p>
+                                            <div class="list-group-item d-flex align-items-center" id="div_transaction_paymentId">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-paymentId"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Payment ID</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card border-left-md">
-                                <div class="card-body">
-                                    <div class="list-group list-group-flush">
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1" id="networkHashrate"></h5>
-                                                <p class="font-size-sm text-muted mb-0">Hash Rate</p>
+                                <div class="card border-left-md">
+                                    <div class="card-body">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item d-flex align-items-center">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-fee"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Fee</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1" id="avgDifficulty"></h5>
-                                                <p class="font-size-sm text-muted mb-0">Average Difficulty</p>
+                                            <div class="list-group-item d-flex align-items-center">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-amount_out"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Sum of outputs</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1" id="currentReward"></h5>
-                                                <p class="font-size-sm text-muted mb-0">Reward</p>
+                                            <div class="list-group-item d-flex align-items-center" id="div_transaction_paymentIdDecifer">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-paymentIdDecifer"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Payment ID decoding</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card border-left-md">
-                                <div class="card-body">
-                                    <div class="list-group list-group-flush">
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1" id="totalCoins"></h5>
-                                                <p class="font-size-sm text-muted mb-0">Supply</p>
+                                <div class="card border-left-md">
+                                    <div class="card-body">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item d-flex align-items-center">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-size"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Size</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1"><span id="emissionPercent"></span> %</h5>
-                                                <p class="font-size-sm text-muted mb-0">Emission</p>
+                                            <div class="list-group-item d-flex align-items-center">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-mixin"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Mixin</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="list-group-item d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                <h5 class="font-weight-bold mb-1" id="nextFork"></h5>
-                                                <p class="font-size-sm text-muted mb-0">Next fork</p>
+                                            <div class="list-group-item d-flex align-items-center d-none" id="tx_unconfirmed">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="transaction-unconfirmed"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Unconfirmed transaction</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -157,12 +169,42 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <div class="card card-border shadow-light">
-                            <div class="card-header font-weight-bold no-border text-muted">
-                                <h6 class="m-0">Network Chart</h6>
+                        <div class="card shadow-light">
+                            <div class="card-header font-weight-bold text-muted">
+                                <div class="row align-items-center">
+                                    <div class="col-12 col-md">
+                                        <h6 class="m-0">In block</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h5 class="mb-0" id="block-hash"></h5>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <canvas id="difficultyChart" height="210"></canvas>
+                            <div class="card-group card-border">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item d-flex align-items-center">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="block-height"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Height</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card border-left-md">
+                                    <div class="card-body">
+                                        <div class="list-group list-group-flush">
+                                            <div class="list-group-item d-flex align-items-center">
+                                                <div class="mr-auto">
+                                                    <h5 class="font-weight-bold mb-1" id="block-timestamp"></h5>
+                                                    <p class="font-size-sm text-muted mb-0">Timestamp</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -178,10 +220,10 @@
                             <div class="card-header font-weight-bold text-muted">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h6 class="m-0">Transaction pool</h6>
+                                        <h6 class="m-0">Inputs</h6>
                                     </div>
                                     <div class="col-auto">
-                                        <span class="badge badge-success d-block" id="mempool_count">0</span>
+                                        <span class="badge badge-success d-block" id="inputs-count"></span>
                                     </div>
                                 </div>
                             </div>
@@ -189,12 +231,10 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Amount</th>
-                                        <th scope="col">Fee</th>
-                                        <th scope="col">Size</th>
-                                        <th scope="col">Hash</th>
+                                        <th scope="col">Image</th>
                                     </tr>
                                 </thead>
-                                <tbody id="mem-pool-rows"></tbody>
+                                <tbody id="inputs-rows"></tbody>
                             </table>
                         </div>
                     </div>
@@ -205,31 +245,22 @@
                             <div class="card-header font-weight-bold text-muted">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h6 class="m-0">Recent Blocks</h6>
+                                        <h6 class="m-0">Outputs</h6>
                                     </div>
                                     <div class="col-auto">
-                                        <span class="badge badge-light d-block">
-                                            Viewing Range: <abbr id="block-range"/>
-                                        </span>
+                                        <span class="badge badge-success d-block" id="outputs-count"></span>
                                     </div>
                                 </div>
                             </div>
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Height</th>
-                                        <th scope="col">Size</th>
-                                        <th scope="col">Block Hash</th>
-                                        <th scope="col">Difficulty</th>
-                                        <th scope="col">Txs</th>
-                                        <th scope="col">Date & time</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Key</th>
                                     </tr>
                                 </thead>
-                                <tbody id="blocks-rows"></tbody>
+                                <tbody id="outputs-rows"></tbody>
                             </table>
-                            <div class="card-footer text-muted text-center no-border pt-4">
-                                <button class="btn btn-primary" id="loadMoreBlocks">Load more</button>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -301,9 +332,7 @@
     <script src="/config.js"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/bootstrap.bundle.js"></script>
-    <script src="/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="/js/crypto-utils.min.js"></script>
     <script src="/js/app.min.js"></script>
-    <script src="/js/home.min.js"></script>
+    <script src="/js/transaction.min.js"></script>
 </body>
 </html>

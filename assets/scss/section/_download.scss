@@ -1,0 +1,13 @@
+@import "node_modules/bootstrap/scss/variables";
+
+.download {
+  .list-group-item {
+    a {
+      font-size: .8em;
+
+      &:hover {
+        color: $primary !important;
+      }
+    }
+  }
+}
