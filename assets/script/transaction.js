@@ -87,11 +87,11 @@
             $('#div_transaction_mixin').addClass('d-none');
         */
         $.updateText('transaction-paymentId', details.paymentId);
-        $.updateText('transaction-paymentIdDecifer', $.hex2a(details.paymentId));
+        $.updateText('transaction-paymentIdDecipher', $.hex2a(details.paymentId));
 
         if (!details.paymentId) {
             $('#div_transaction_paymentId').addClass('d-none');
-            $('#div_transaction_paymentIdDecifer').addClass('d-none');
+            $('#div_transaction_paymentIdDecipher').addClass('d-none');
         }
 
         $.updateText('transaction-size', $.localizeNumber(details.size));
@@ -131,11 +131,11 @@
             $('#div_transaction_mixin').addClass('d-none');
         */
         $.updateText('transaction-paymentId', transaction.paymentId === '0000000000000000000000000000000000000000000000000000000000000000' ? '' : transaction.paymentId);
-        $.updateText('transaction-paymentIdDecifer', $.hex2a(transaction.paymentId));
+        $.updateText('transaction-paymentIdDecipher', $.hex2a(transaction.paymentId));
 
         if (!transaction.paymentId || transaction.paymentId === '0000000000000000000000000000000000000000000000000000000000000000') {
             $('#div_transaction_paymentId').addClass('d-none');
-            $('#div_transaction_paymentIdDecifer').addClass('d-none');
+            $('#div_transaction_paymentIdDecipher').addClass('d-none');
         }
 
         $.updateText('transaction-size', $.localizeNumber(transaction.size));
