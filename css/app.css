@@ -15956,6 +15956,16 @@ readers do not read off random characters that represent icons */
   border-right-width: 0;
 }
 
+@media (max-width: 767.98px) {
+  .card > .card-group .card {
+    border-width: 0;
+  }
+  .card > .card-group .card:not(:first-child) {
+    border-top-width: 1px;
+    border-radius: 0;
+  }
+}
+
 .table th,
 .table td {
   padding: 1rem .75rem;
