@@ -1,3 +1,5 @@
+@import "node_modules/bootstrap/scss/mixins";
+
 .statistics {
   h5 {
     font-size: 1.0625rem;
@@ -10,6 +12,14 @@
           display: none !important;
         }
       }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .statistics {
+    .card-group {
+      box-shadow: none !important;
     }
   }
 }

@@ -1,7 +1,7 @@
 {
     "title": "Cirquity",
-    "name": "cirquity-website",
-    "version": "0.1.0",
+    "name": "cirquity-explorer",
+    "version": "1.1.0",
     "scripts": {
         "start": "node_modules/.bin/gulp watch"
     },
@@ -16,17 +16,17 @@
     ],
     "homepage": "https://cirquity.com",
     "bugs": {
-        "url": "https://github.com/cirquity/cirquity-website/issues",
-        "email": "cirquity@gmail.com"
+        "url": "https://github.com/cirquity/cirquity-explorer/issues",
+        "email": "cirquity@pm.me"
     },
     "license": "MIT",
     "author": "The Cirquity Developers",
     "contributors": [
-        "Felix Landicho (https://deeterd.com)"
+        "Deeterd (https://deeterd.com)"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/cirquity/cirquity-website.git"
+        "url": "https://github.com/cirquity/cirquity-explorer.git"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.10.2",

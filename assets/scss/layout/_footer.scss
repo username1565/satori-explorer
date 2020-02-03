@@ -1,5 +1,6 @@
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/mixins";
 
 footer {
   background-color: $white;
@@ -85,4 +86,18 @@ footer {
     }
   }
 
+}
+
+
+@include media-breakpoint-down(sm) {
+  footer {
+    .footer-details {
+      padding-bottom: 2rem;
+      text-align: center;
+
+      .footer-widget {
+        margin-bottom: 2rem;
+      }
+    }
+  }
 }

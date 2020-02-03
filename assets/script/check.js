@@ -20,7 +20,7 @@
                     //TODO proper error display
                     alert(response.error.message);
                 } else {
-                    const privateKeyType = "view";
+                    const privateKeyType = 'view';
                     const results = $.checkTxn(response.result, privateKey.val(), publicAddress.val(), privateKeyType);
                     if (results.error) {
                         txnLink.attr('href', '');
@@ -31,10 +31,13 @@
                         txnLink.attr('href', 'transaction.html?hash=' + transactionHash.val());
                         txnLink.html(transactionHash.val());
                         outputsRow.html('');
+
                         for (let o in results.owned) {
-                            let owned = results.owned[o];
-                            let row = "<tr><td>" + owned[2] + "</td><td>" + owned[1] + "</td></tr>";
-                            outputsRow.append(row);
+                            if (results.owned.hasOwnProperty(o)) {
+                                let owned = results.owned[o];
+                                let row = "<tr><td>" + owned[2] + "</td><td>" + owned[1] + "</td></tr>";
+                                outputsRow.append(row);
+                            }
                         }
                     }
                 }
@@ -77,18 +80,20 @@
             owned: [],
             unowned: [],
         };
+        console.log(addrHex);
         let s = 8, m = s + 64, e = m + 64; //offsets
         if (privateKey.length !== 64 || $.validHex(privateKey) !== true) {
-            results.error = "Invalid private key.";
+            results.error = "Invalid private key";
         } else if (address.length !== 99 || (addrHex.slice(-s) !== cn_fast_hash(addrHex.slice(0, -s)).slice(0, s))) {
             results.error = "Bad address";
         } else if (privateKeyType === 'view' && addrHex.slice(m, e) !== sec_key_to_pub(privateKey)) {
-            results.error = "Secret View key does not match address.";
+            results.error = "Secret View key does not match address";
         } else if (hash.length !== 64 || !$.validHex(hash)) {
             results.error = "Invalid TXN Hash";
         } else {
             let pub = addrHex.slice(m, e);
 
+            /*
             if (privateKeyType === "view") {
                 pub = $.pubKeyFromExtra(txn.extra);
             }
@@ -96,8 +101,12 @@
             if (!pub) {
                 results.error = "Unrecognized tx_extra format!";
             } else {
+                */
                 let der = cnUtil.generate_key_derivation(pub, privateKey);
                 let spk = addrHex.slice(s, m);
+
+                console.log(der, spk);
+
                 for (let i = 0; i < txn.vout.length; i++) {
                     let pubkey = cnUtil.derive_public_key(der, i, spk);
                     let amount = txn.vout[i].amount / 100000000;
@@ -109,8 +118,10 @@
                     }
                 }
 
-            }
+            // }
         }
+
+        console.log(results);
 
         return results;
     };
@@ -118,6 +129,7 @@
 
     $.pubKeyFromExtra = function(bin) {
         let pub = false;
+        console.log(bin, bin.length, bin[0]);
         while (bin.length > 0 && bin[0] === 0) {
             bin = bin.slice(1, bin.length);
         }

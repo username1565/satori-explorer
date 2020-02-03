@@ -1,4 +1,5 @@
 @import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
 
 header {
   .navbar {
@@ -35,6 +36,20 @@ header {
     &.active {
       background-color: $white;
       box-shadow: $box-shadow-sm;
+    }
+  }
+}
+
+
+@include media-breakpoint-down(sm) {
+  header {
+    .navbar {
+      background-color: $white;
+      box-shadow: $box-shadow-sm;
+
+      .navbar-collapse {
+        padding-top: 1rem;
+      }
     }
   }
 }

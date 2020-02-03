@@ -185,17 +185,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <table class="table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Fee</th>
-                                        <th scope="col">Size</th>
-                                        <th scope="col">Hash</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="mem-pool-rows"></tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Fee</th>
+                                            <th scope="col">Size</th>
+                                            <th scope="col">Hash</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mem-pool-rows"></tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -209,24 +211,26 @@
                                     </div>
                                     <div class="col-auto">
                                         <span class="badge badge-light d-block">
-                                            Viewing Range: <abbr id="block-range"/>
+                                            Viewing Range: <abbr id="block-range"></abbr>
                                         </span>
                                     </div>
                                 </div>
                             </div>
-                            <table class="table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Height</th>
-                                        <th scope="col">Size</th>
-                                        <th scope="col">Block Hash</th>
-                                        <th scope="col">Difficulty</th>
-                                        <th scope="col">Txs</th>
-                                        <th scope="col">Date & time</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="blocks-rows"></tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Height</th>
+                                            <th scope="col">Size</th>
+                                            <th scope="col">Block Hash</th>
+                                            <th scope="col">Difficulty</th>
+                                            <th scope="col">Txs</th>
+                                            <th scope="col">Date & time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="blocks-rows"></tbody>
+                                </table>
+                            </div>
                             <div class="card-footer text-muted text-center no-border pt-4">
                                 <button class="btn btn-primary" id="loadMoreBlocks">Load more</button>
                             </div>

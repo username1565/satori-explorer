@@ -1,3 +1,5 @@
+@import "node_modules/bootstrap/scss/mixins";
+
 .table {
   th, td {
     padding: 1rem .75rem;
@@ -30,5 +32,18 @@
     &#inputs-rows {
       font-size: .8rem;
     }
+
+    td {
+      &.date-time {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-down(sm) {
+  .table {
+
   }
 }
