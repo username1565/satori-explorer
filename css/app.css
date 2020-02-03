@@ -1,7 +1,7 @@
 /*!
- * Cirquity - Cirquity v0.1.0 (https://cirquity.com)
+ * Cirquity - Cirquity v1.1.0 (https://cirquity.com)
  * Copyright 2020-2020 The Cirquity Developers
- * Licensed under MIT (https://github.com/cirquity/cirquity-website/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/cirquity/cirquity-explorer/blob/master/LICENSE)
  */
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400&display=swap");
@@ -15959,6 +15959,7 @@ readers do not read off random characters that represent icons */
 .table th,
 .table td {
   padding: 1rem .75rem;
+  white-space: nowrap;
 }
 
 .table tr > *:first-child {
@@ -15976,6 +15977,12 @@ readers do not read off random characters that represent icons */
 
 .table tbody#blocks-rows, .table tbody#mem-pool-rows, .table tbody#transactions-rows, .table tbody#outputs-rows, .table tbody#inputs-rows {
   font-size: .8rem;
+}
+
+@media (max-width: 767.98px) {
+  .table thead th {
+    border-top-width: 0;
+  }
 }
 
 /*
@@ -16029,6 +16036,10 @@ label {
   margin-bottom: 4em;
 }
 
+.sub-heading#donation-address {
+  word-break: break-word;
+}
+
 .shadow-light {
   box-shadow: 0 1.5rem 4rem rgba(22, 28, 45, 0.05);
 }
@@ -16063,6 +16074,26 @@ header .navbar .search-form .input-group {
 header .navbar.active {
   background-color: #fff;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+@media (max-width: 767.98px) {
+  header .navbar {
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+  header .navbar .navbar-collapse {
+    padding-top: 1rem;
+  }
+  header .navbar .navbar-collapse .nav-item.dropdown .dropdown-toggle {
+    display: none;
+  }
+  header .navbar .search-form {
+    display: block !important;
+    box-shadow: none !important;
+  }
+  header .navbar .search-form .input-group {
+    width: 100%;
+  }
 }
 
 main {
@@ -16145,6 +16176,16 @@ footer .footer-nav li {
 footer .footer-nav li a {
   font-size: .875em;
   margin-left: 20px;
+}
+
+@media (max-width: 767.98px) {
+  footer .footer-details {
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+  footer .footer-details .footer-widget {
+    margin-bottom: 2rem;
+  }
 }
 
 .hero {
@@ -16397,4 +16438,10 @@ $h2-font-size: 3rem;
 
 .statistics .card .list-group .list-group-item.d-none {
   display: none !important;
+}
+
+@media (max-width: 767.98px) {
+  .statistics .card-group {
+    box-shadow: none !important;
+  }
 }

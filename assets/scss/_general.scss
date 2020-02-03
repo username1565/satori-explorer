@@ -41,6 +41,10 @@ label {
 .sub-heading {
   color: gray("700");
   margin-bottom: 4em;
+
+  &#donation-address {
+    word-break: break-word;
+  }
 }
 
 .shadow-light {

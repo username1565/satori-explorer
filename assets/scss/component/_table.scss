@@ -3,6 +3,7 @@
 .table {
   th, td {
     padding: 1rem .75rem;
+    white-space: nowrap;
   }
 
   tr {
@@ -32,18 +33,16 @@
     &#inputs-rows {
       font-size: .8rem;
     }
-
-    td {
-      &.date-time {
-        white-space: nowrap;
-      }
-    }
   }
 }
 
 
 @include media-breakpoint-down(sm) {
   .table {
-
+    thead {
+      th {
+        border-top-width: 0;
+      }
+    }
   }
 }

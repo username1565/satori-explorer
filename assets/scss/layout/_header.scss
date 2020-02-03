@@ -49,6 +49,23 @@ header {
 
       .navbar-collapse {
         padding-top: 1rem;
+
+        .nav-item {
+          &.dropdown {
+            .dropdown-toggle {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .search-form {
+        display: block !important;
+        box-shadow: none !important;
+
+        .input-group {
+          width: 100%;
+        }
       }
     }
   }
