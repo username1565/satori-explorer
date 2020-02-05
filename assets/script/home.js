@@ -371,7 +371,7 @@
             maintainAspectRatio: false,
             elements: {
                 line: {
-                    tension: 1
+                    tension: 0
                 }
             },
             title: {
