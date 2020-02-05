@@ -5,13 +5,13 @@
     
     $(function () {
         currentPage = 'payment';
-        let isReadyBlock = setInterval(function() {
+        let isReadyPayment = setInterval(function() {
             if (appReady) {
                 paymentId = $.urlParam('hash');
                 $.updateText('payment-id', paymentId);
                 $.getTransactions();
                 
-                clearInterval(isReadyBlock);
+                clearInterval(isReadyPayment);
             }
         }, 10);
     });

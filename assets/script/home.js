@@ -369,13 +369,11 @@
         let options = {
             responsive: true,
             maintainAspectRatio: false,
-            /*
             elements: {
                 line: {
                     tension: 0
                 }
             },
-            */
             title: {
                 display: false
             },
@@ -401,7 +399,7 @@
                     display: false
                 }, {
                     id: 'Difficulty',
-                    // type: 'linear',
+                    type: 'linear',
                     position: 'left',
                     scaleLabel: {
                         display: false,
