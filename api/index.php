@@ -25,13 +25,29 @@ if (count($parts) >= 2) {
         }
     }
     else {
-        header("HTTP/1.0 404 Not Found");
-        die('404 Not Found');
+        if ($parts[1] === 'node') {
+            $nodeUrl = urldecode(str_replace('?url=', '', $parts[2]));
+            getNodeInfo($nodeUrl);
+        }
+        else {
+            header("HTTP/1.0 404 Not Found");
+            die('404 Not Found');
+        }
     }
 }
 else {
     header("HTTP/1.0 404 Not Found");
     die('404 Not Found');
+}
+
+function getNodeInfo($url) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return_json($result);
 }
 
 function getFee() {
@@ -40,7 +56,7 @@ function getFee() {
     $info = fetch_data($config['api'], 'fee');
     $feeRaw = $info['amount'];
 
-    echo number_format($feeRaw / $config['coinUnits'], $config['coinDecimals'], '.', ',');
+    return_json(number_format($feeRaw / $config['coinUnits'], $config['coinDecimals'], '.', ','));
 }
 
 function getHashrate() {
@@ -49,7 +65,7 @@ function getHashrate() {
     $info = fetch_data($config['api']);
     $difficulty = $info['difficulty'];
 
-    echo number_format($difficulty / $config['blockTargetInterval'], $config['coinDecimals'], '.', ',');
+    return_json(number_format($difficulty / $config['blockTargetInterval'], $config['coinDecimals'], '.', ','));
 }
 
 function getDifficulty() {
@@ -57,7 +73,7 @@ function getDifficulty() {
 
     $info = fetch_data($config['api']);
 
-    echo $info['difficulty'];
+    return_json($info['difficulty']);
 }
 
 function getHeight() {
@@ -65,7 +81,7 @@ function getHeight() {
 
     $info = fetch_data($config['api'], 'height');
 
-    echo $info['network_height'];
+    return_json($info['network_height']);
 }
 
 function getReward() {
@@ -73,7 +89,7 @@ function getReward() {
 
     $lastBlock = fetch_rpc($config['api'], 'getlastblockheader', '{}');
 
-    echo $lastBlock['result']['block_header']['reward'];
+    return_json($lastBlock['result']['block_header']['reward']);
 }
 
 function getSupply() {
@@ -81,7 +97,7 @@ function getSupply() {
 
     $supplyRaw = getSupplyAtomic(true);
 
-    echo number_format($supplyRaw / 100, $config['coinDecimals'], '.', ',');
+    return_json(number_format($supplyRaw / 100, $config['coinDecimals'], '.', ','));
 }
 
 function getSupplyAtomic($called = false) {
@@ -95,7 +111,7 @@ function getSupplyAtomic($called = false) {
         $supplyRaw = $blockData['result']['block']['alreadyGeneratedCoins'];
 
         if (!$called) {
-            echo $supplyRaw;
+            return_json($supplyRaw);
         }
 
         return $supplyRaw;

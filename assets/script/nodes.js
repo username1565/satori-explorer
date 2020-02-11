@@ -40,7 +40,7 @@
                 host = url;
             }
 
-            $.getJSON(scheme + host + '/info', function (data, textStatus, jqXHR) {
+            $.getJSON('/api/node/?url=' + encodeURIComponent(scheme + host + '/info'), function (data, textStatus, jqXHR) {
                 const d = $.formatDate(data.start_time);
                 $('#nodes-rows').append($.renderNodeRow(name, host, data, d));
             });
@@ -62,7 +62,7 @@
                     host = url;
                 }
 
-                $.getJSON(scheme + host + '/info', function (data, textStatus, jqXHR) {
+                $.getJSON('/api/node/?url=' + encodeURIComponent(scheme + host + '/info'), function (data, textStatus, jqXHR) {
                     const d = $.formatDate(data.start_time);
                     $('#nodes-rows').append($.renderNodeRow(name, host, data, d));
                 });

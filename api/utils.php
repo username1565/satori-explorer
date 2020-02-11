@@ -28,3 +28,8 @@ function fetch_data($api, $endPoint = 'info') {
     $response = file_get_contents($_url);
     return json_decode($response, true);
 }
+
+function return_json($content) {
+    header('Content-Type: application/json; charset=utf-8');
+    echo $content;
+}
