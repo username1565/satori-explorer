@@ -47,7 +47,7 @@
                             <a class="nav-link link-scroll" href="pools.html">Pools</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link-scroll" href="nodes.html">Nodes</a>
+                            <a class="nav-link link-scroll active" href="nodes.html">Nodes <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link link-scroll" href="api.html">API</a>
@@ -72,138 +72,84 @@
     </header>
 
     <main>
+        <!--
         <section id="statistics" class="statistics">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card shadow-light">
-                            <div class="card-header font-weight-bold text-muted">
-                                <div class="row align-items-center">
-                                    <div class="col-12 col-md">
-                                        <h6 class="m-0">Block</h6>
-                                    </div>
-                                    <div class="col-auto">
-                                        <h5 class="mb-0" id="block-hash"></h5>
+                        <div class="card-group card-border shadow-light">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="list-group list-group-flush">
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="mr-auto">
+                                                <h5 class="font-weight-bold mb-1" id="totalPoolsHashrate"></h5>
+                                                <p class="font-size-sm text-muted mb-0">Pools speed</p>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="mr-auto">
+                                                <h5 class="font-weight-bold mb-1" id="networkHashrate"></h5>
+                                                <p class="font-size-sm text-muted mb-0">Network speed</p>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="mr-auto">
+                                                <h5 class="font-weight-bold mb-1" id="total_miners"></h5>
+                                                <p class="font-size-sm text-muted mb-0">Total miners</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-group card-border">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="list-group list-group-flush">
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-height"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Height</p>
-                                                </div>
+                            <div class="card border-left-md">
+                                <div class="card-body">
+                                    <div class="list-group list-group-flush">
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="mr-auto">
+                                                <h5 class="font-weight-bold mb-1" id="networkDifficulty"></h5>
+                                                <p class="font-size-sm text-muted mb-0">Current difficulty</p>
                                             </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-timestamp"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Timestamp</p>
-                                                </div>
+                                        </div>
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="mr-auto">
+                                                <h5 class="font-weight-bold mb-1" id="avgDifficulty"></h5>
+                                                <p class="font-size-sm text-muted mb-0">Average difficulty</p>
                                             </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-version"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Version</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-difficulty"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Difficulty</p>
-                                                </div>
+                                        </div>
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="mr-auto">
+                                                <h5 class="font-weight-bold mb-1" id="avgHashrate"></h5>
+                                                <p class="font-size-sm text-muted mb-0">Average Hashrate</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card border-left-md">
-                                    <div class="card-body">
-                                        <div class="list-group list-group-flush">
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-orphan"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Orphan</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-transactions"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Transactions</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-totalCoins"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Total coins</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-totalTransactions"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Total transactions</p>
+                            </div>
+                            <div class="card border-left-md">
+                                <div class="card-body">
+                                    <div class="list-group list-group-flush">
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="form-group w-100 mb-1">
+                                                <label for="calcHashRate" class="h5 font-weight-bold mb-2 text-capitalize">Estimate Mining Profits</label>
+                                                <input type="number" class="form-control" id="calcHashRate" placeholder="Enter your hash rate" autocomplete="off">
+                                                <div class="btn-group mt-2 float-right">
+                                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                                                        <span id="calcHashUnit" data-mul="1">KH/s</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-right" role="menu" id="calcHashUnits">
+                                                        <li><a href="#" class="dropdown-item" data-mul="0">H/s</a></li>
+                                                        <li><a href="#" class="dropdown-item" data-mul="1">KH/s</a></li>
+                                                        <li><a href="#" class="dropdown-item" data-mul="2">MH/s</a></li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="card border-left-md">
-                                    <div class="card-body">
-                                        <div class="list-group list-group-flush">
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1"><span id="block-transactionsSize"></span> Bytes</h5>
-                                                    <p class="font-size-sm text-muted mb-0">Total transactions size</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1"><span id="block-blockSize"></span> Bytes</h5>
-                                                    <p class="font-size-sm text-muted mb-0">Total block size</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1"><span id="block-currentTxsMedian"></span> Bytes</h5>
-                                                    <p class="font-size-sm text-muted mb-0">Current txs median</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1"><span id="block-effectiveTxsMedian"></span> Bytes</h5>
-                                                    <p class="font-size-sm text-muted mb-0">Effective txs median</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card border-left-md">
-                                    <div class="card-body">
-                                        <div class="list-group list-group-flush">
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-rewardPenalty"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Reward penalty</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-baseReward"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Base reward</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-transactionsFee"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Transactions fee</p>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex align-items-center">
-                                                <div class="mr-auto">
-                                                    <h5 class="font-weight-bold mb-1" id="block-reward"></h5>
-                                                    <p class="font-size-sm text-muted mb-0">Reward</p>
-                                                </div>
+
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="mr-auto">
+                                                <h5 class="font-weight-bold mb-1" id="calcHashAmount">0</h5>
+                                                <p class="font-size-sm text-muted mb-0">CIRQ / day</p>
                                             </div>
                                         </div>
                                     </div>
@@ -214,26 +160,29 @@
                 </div>
             </div>
         </section>
+        -->
 
-        <section id="tables" class="tables bg-light">
+        <section id="tables" class="tables">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-border border-success shadow-lg">
                             <div class="card-header font-weight-bold text-muted">
-                                <h6 class="m-0">Transactions</h6>
+                                <h6 class="m-0">Community Nodes</h6>
                             </div>
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Hash</th>
-                                            <th scope="col">% Fee</th>
-                                            <th scope="col">Total Amount</th>
-                                            <th scope="col">Size</th>
+                                            <th scope="col">Node Name</th>
+                                            <th scope="col">Hostname : Port</th>
+                                            <th scope="col">Version</th>
+                                            <th scope="col">Height</th>
+                                            <th scope="col" class="text-center">IN / OUT</th>
+                                            <th scope="col">Uptime</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="transactions-rows"></tbody>
+                                    <tbody id="nodes-rows"></tbody>
                                 </table>
                             </div>
                         </div>
@@ -307,8 +256,7 @@
     <script src="/config.js"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/bootstrap.bundle.js"></script>
-    <script src="/js/crypto-utils.min.js"></script>
     <script src="/js/app.min.js"></script>
-    <script src="/js/block.min.js"></script>
+    <script src="/js/nodes.min.js"></script>
 </body>
 </html>

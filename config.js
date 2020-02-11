@@ -7,15 +7,3 @@ let coinDisplayDecimals = 2;
 let coinEmissionSpeed = 25;
 let symbol = 'CIRQ';
 let refreshDelay = 30000;
-let networkStat1 = {
-    'cirq': [
-        [
-            'pool.cirquity.com',
-            'https://api-pool.cirquity.com'
-        ]
-    ]
-};
-
-let networkStat2 = {
-    'cirq': []
-};
