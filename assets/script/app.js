@@ -38,27 +38,6 @@ let numberFormatter = new Intl.NumberFormat('en-US');
         });
 
 
-        // ================================================
-        // Preventing URL update on navigation link click
-        // ================================================
-        $('.link-scroll').on('click', function (e) {
-            let anchor = $(this);
-            $('html, body').stop().animate({
-                scrollTop: $(anchor.attr('href')).offset().top - $('header .navbar').outerHeight()
-            }, 1000);
-            e.preventDefault();
-        });
-
-
-        // ================================================
-        // Scroll Spy
-        // ================================================
-        $('body').scrollspy({
-            target: '#navbarNav',
-            offset: 80
-        });
-
-
         $('#search-text').keyup(function (e) {
             if (e.keyCode === 13)
                 $('#search-button').click();
