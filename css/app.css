@@ -16110,6 +16110,12 @@ main {
   min-height: 65vh;
 }
 
+@media (min-width: 1300px) {
+  .container {
+    max-width: 1300px;
+  }
+}
+
 footer {
   background-color: #fff;
   /*border-top: 1px solid $border-color;*/
