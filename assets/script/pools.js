@@ -36,9 +36,99 @@
             const api = data.api;
             const host = data.url;
             const name = data.name;
+            const type = data.type;
 
             if (api !== undefined) {
-                $.getJSON(api + '/stats', function (data, textStatus, jqXHR) {
+                if (type === 'cryptonote-nodejs-pool') {
+                    $.getPoolStatsCryptonote(api, host, name, false);
+                }
+
+                if (type === 'snipa22-nodejs-pool') {
+                    $.getPoolStatsSnipa(api, host, name, false);
+                }
+            }
+        });
+
+        setInterval(function () {
+            totalMiners = 0;
+            totalHashrate = 0;
+            poolStats = [];
+
+            networkPool.forEach(function (data) {
+                const api = data.api;
+                const host = data.url;
+                const name = data.name;
+                const type = data.type;
+
+                if (api !== undefined) {
+                    if (type === 'cryptonote-nodejs-pool') {
+                        $.getPoolStatsCryptonote(api, host, name, true);
+                    }
+
+                    if (type === 'snipa22-nodejs-pool') {
+                        $.getPoolStatsSnipa(api, host, name, true);
+                    }
+                }
+            });
+        }, 120000);
+
+        $.updatePool();
+    };
+
+
+    $.getPoolStatsCryptonote = function(api, host, name, update) {
+        if (update) {
+            totalMiners = 0;
+            totalHashrate = 0;
+            poolStats = [];
+        }
+
+        $.getJSON(api + '/stats', function (data, textStatus, jqXHR) {
+            let d = new Date(parseInt(data.pool.lastBlockFound));
+            let poolName = name;
+
+            if (poolName.length === 0) {
+                poolName = host;
+            }
+
+            let poolId = poolName.replace(' ', '-').toLowerCase();
+
+            totalMiners += parseInt(data.pool.miners);
+            totalHashrate += parseInt(data.pool.hashrate);
+
+            $.updateText('totalPoolsHashrate', $.getReadableHashRateString(totalHashrate) + '/sec');
+            $.updateText('total_miners', $.localizeNumber(totalMiners));
+
+            if (update) {
+                let dateString = $.renderDate(d);
+                $.updateText('height-' + poolId, $.localizeNumber(data.network.height));
+                $.updateText('hashrate-' + poolId, $.localizeNumber(data.pool.hashrate) + ' H/s');
+                $.updateText('miners-' + poolId, $.localizeNumber(data.pool.miners));
+                $.updateText('lastFound-' + poolId, dateString);
+                $.updateText('networkHashrate', $.getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
+                $.updateText('networkDifficulty', $.getReadableDifficultyString(lastStats.difficulty, 0).toString());
+            }
+            else {
+                $('#pools-rows').append($.renderPoolRow(host, poolName, poolId, data, d));
+            }
+
+            poolStats.push([poolId, parseInt(data.pool.hashrate), '']);
+        });
+    };
+
+
+    $.getPoolStatsSnipa = function(api, host, name, update) {
+        if (update) {
+            totalMiners = 0;
+            totalHashrate = 0;
+            poolStats = [];
+        }
+
+        $.getJSON(api + '/config', function (config, textStatus, jqXHR) {
+            $.getJSON(api + '/pool/stats', function (pool, textStatus, jqXHR) {
+                $.getJSON(api + '/network/stats', function (network, textStatus, jqXHR) {
+                    const data = $.elaborateSnipa(config, pool, network);
+
                     let d = new Date(parseInt(data.pool.lastBlockFound));
                     let poolName = name;
 
@@ -46,58 +136,52 @@
                         poolName = host;
                     }
 
-                    $('#pools-rows').append($.renderPoolRow(host, poolName, data, d));
+                    let poolId = poolName.replace(' ', '-').toLowerCase();
 
-                    totalHashrate += parseInt(data.pool.hashrate);
                     totalMiners += parseInt(data.pool.miners);
+                    totalHashrate += parseInt(data.pool.hashrate);
 
                     $.updateText('totalPoolsHashrate', $.getReadableHashRateString(totalHashrate) + '/sec');
                     $.updateText('total_miners', $.localizeNumber(totalMiners));
 
-                    poolStats.push([poolName, parseInt(data.pool.hashrate), '']);
-                });
-            }
-        });
+                    if (update) {
+                        let dateString = $.renderDate(d);
+                        $.updateText('height-' + poolId, $.localizeNumber(data.network.height));
+                        $.updateText('hashrate-' + poolId, $.localizeNumber(data.pool.hashrate) + ' H/s');
+                        $.updateText('miners-' + poolId, $.localizeNumber(data.pool.miners));
+                        $.updateText('lastFound-' + poolId, dateString);
+                        $.updateText('networkHashrate', $.getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
+                        $.updateText('networkDifficulty', $.getReadableDifficultyString(lastStats.difficulty, 0).toString());
+                    }
+                    else {
+                        $('#pools-rows').append($.renderPoolRow(host, poolName, poolId, data, d));
+                    }
 
-        setInterval(function () {
-            totalHashrate = 0;
-            totalMiners = 0;
-            poolStats = [];
-
-            networkPool.forEach(function (url, host, map) {
-                let index = host.indexOf("/");
-                let poolName;
-                if (index < 0) {
-                    poolName = host;
-                } else {
-                    poolName = host.substr(0, index);
-                }
-
-                $.getJSON(url + '/stats', (data, textStatus, jqXHR) => {
-                    let d = new Date(parseInt(data.pool.lastBlockFound));
-                    let dateString = $.renderDate(d);
-                    //let agostring = $.timeago(d);
-
-                    totalHashrate += parseInt(data.pool.hashrate);
-                    totalMiners += parseInt(data.pool.miners);
-
-                    $.updateText('height-' + poolName, $.localizeNumber(data.network.height));
-                    $.updateText('hashrate-' + poolName, $.localizeNumber(data.pool.hashrate) + ' H/s');
-                    $.updateText('miners-' + poolName, $.localizeNumber(data.pool.miners));
-                    $.updateText('lastFound-' + poolName, dateString);
-                    // $.updateText('ago-' + poolName, agostring);
-                    $.updateText('totalPoolsHashrate', $.getReadableHashRateString(totalHashrate) + '/sec');
-                    $.updateText('total_miners', $.localizeNumber(totalMiners));
-                    $.updateText('networkHashrate', $.getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
-                    $.updateText('networkDifficulty', $.getReadableDifficultyString(lastStats.difficulty, 0).toString());
-
-                    poolStats.push([poolName, parseInt(data.pool.hashrate), '']);
+                    poolStats.push([poolId, parseInt(data.pool.hashrate), '']);
                 });
             });
-        }, 120000);
-
-        $.updatePool();
+        });
     };
+
+
+    $.elaborateSnipa = function (config, pool, network) {
+        return {
+            config: {
+                fee: config.pps_fee,
+                donation: config.dev_donation,
+                minPaymentThreshold: config.min_wallet_payout
+            },
+            pool: {
+                hashrate: pool.pool_statistics.hashRate,
+                miners: pool.pool_statistics.miners,
+                lastBlockFound: pool.pool_statistics.lastBlockFoundTime * 1000
+            },
+            network: {
+                height: network.height
+            }
+        };
+    };
+
 
     $.updatePool = function () {
         $.updateText('networkHashrate', $.getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
@@ -184,19 +268,19 @@
     };
     
     
-    $.renderPoolRow = function (host, name, data, d) {
+    $.renderPoolRow = function (host, name, id, data, d) {
         // let agostring = $.timeago(d);
         let dateString = $.renderDate(d);
         let pools_row = [];
 
         pools_row.push('<tr>');
-        pools_row.push('<th scope="row" id="host-' + name + '"><a target="_blank" href="' + host + '">' + name + '</a></th>');
-        pools_row.push('<td id="height-' + name + '" class="height">' + $.localizeNumber(data.network.height) + '</td>');
-        pools_row.push('<td id="hashrate-' + name + '">' + $.localizeNumber(data.pool.hashrate) + ' H/s</td>');
-        pools_row.push('<td id="miners-' + name + '">' + $.localizeNumber(data.pool.miners) + '</td>');
-        pools_row.push('<td id="totalFee-' + name + '">' + $.calculateTotalFee(data) + '%</td>');
-        pools_row.push('<td id="minPayout-' + name + '">' + $.getReadableCoins(data.config.minPaymentThreshold, 2) + '</td>');
-        pools_row.push('<td><span id="lastFound-' + name + '">' + dateString + '</span></td>');
+        pools_row.push('<th scope="row" id="host-' + id + '"><a target="_blank" href="' + host + '">' + name + '</a></th>');
+        pools_row.push('<td id="height-' + id + '" class="height">' + $.localizeNumber(data.network.height) + '</td>');
+        pools_row.push('<td id="hashrate-' + id + '">' + $.localizeNumber(data.pool.hashrate) + ' H/s</td>');
+        pools_row.push('<td id="miners-' + id + '">' + $.localizeNumber(data.pool.miners) + '</td>');
+        pools_row.push('<td id="totalFee-' + id + '">' + $.calculateTotalFee(data) + '%</td>');
+        pools_row.push('<td id="minPayout-' + id + '">' + $.getReadableCoins(data.config.minPaymentThreshold, 2) + '</td>');
+        pools_row.push('<td><span id="lastFound-' + id + '">' + dateString + '</span></td>');
         pools_row.push('</tr>');
 
         return pools_row.join('');
