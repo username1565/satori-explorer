@@ -92,18 +92,24 @@
             }
 
             let poolId = poolName.replace(' ', '-').toLowerCase();
+            let poolMiners = data.pool.miners;
 
             totalMiners += parseInt(data.pool.miners);
+            if (typeof data.pool.minersSolo !== 'undefined') {
+                totalMiners += parseInt(data.pool.minersSolo);
+                poolMiners = poolMiners + data.pool.minersSolo;
+            }
             totalHashrate += parseInt(data.pool.hashrate);
 
             $.updateText('totalPoolsHashrate', $.getReadableHashRateString(totalHashrate) + '/sec');
             $.updateText('total_miners', $.localizeNumber(totalMiners));
 
+
             if (update) {
                 let dateString = $.renderDate(d);
                 $.updateText('height-' + poolId, $.localizeNumber(data.network.height));
                 $.updateText('hashrate-' + poolId, $.localizeNumber(data.pool.hashrate) + ' H/s');
-                $.updateText('miners-' + poolId, $.localizeNumber(data.pool.miners));
+                $.updateText('miners-' + poolId, $.localizeNumber(poolMiners));
                 $.updateText('lastFound-' + poolId, dateString);
                 $.updateText('networkHashrate', $.getReadableHashRateString(lastStats.difficulty / blockTargetInterval) + '/sec');
                 $.updateText('networkDifficulty', $.getReadableDifficultyString(lastStats.difficulty, 0).toString());
@@ -272,12 +278,17 @@
         // let agostring = $.timeago(d);
         let dateString = $.renderDate(d);
         let pools_row = [];
+        let poolMiners = data.pool.miners;
+
+        if (typeof data.pool.minersSolo !== 'undefined') {
+            poolMiners = poolMiners + data.pool.minersSolo;
+        }
 
         pools_row.push('<tr>');
         pools_row.push('<th scope="row" id="host-' + id + '"><a target="_blank" href="' + host + '">' + name + '</a></th>');
         pools_row.push('<td id="height-' + id + '" class="height">' + $.localizeNumber(data.network.height) + '</td>');
         pools_row.push('<td id="hashrate-' + id + '">' + $.localizeNumber(data.pool.hashrate) + ' H/s</td>');
-        pools_row.push('<td id="miners-' + id + '">' + $.localizeNumber(data.pool.miners) + '</td>');
+        pools_row.push('<td id="miners-' + id + '">' + $.localizeNumber(poolMiners) + '</td>');
         pools_row.push('<td id="totalFee-' + id + '">' + $.calculateTotalFee(data) + '%</td>');
         pools_row.push('<td id="minPayout-' + id + '">' + $.getReadableCoins(data.config.minPaymentThreshold, 2) + '</td>');
         pools_row.push('<td><span id="lastFound-' + id + '">' + dateString + '</span></td>');
