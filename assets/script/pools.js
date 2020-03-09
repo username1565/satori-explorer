@@ -83,7 +83,7 @@
             poolStats = [];
         }
 
-        $.getJSON(api + '/stats', function (data, textStatus, jqXHR) {
+        $.getJSON($.getApiUrl(api + '/stats'), function (data, textStatus, jqXHR) {
             let d = new Date(parseInt(data.pool.lastBlockFound));
             let poolName = name;
 
@@ -336,6 +336,17 @@
             }
         }
         return totalFee;
+    };
+
+
+    $.getApiUrl = function(url) {
+        let apiUrl = url;
+
+        if (url.indexOf('https') === -1) {
+            apiUrl = '/api/node/?url=' + encodeURIComponent(url);
+        }
+
+        return apiUrl;
     };
     
     
