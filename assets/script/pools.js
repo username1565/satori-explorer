@@ -111,7 +111,7 @@
             totalHashrate += parseInt(data.pool.hashrate);
             if (typeof data.pool.hashrateSolo !== 'undefined') {
                 totalHashrate += parseInt(data.pool.hashrateSolo);
-                poolHashrate = poolMiners + data.pool.hashrateSolo;
+                poolHashrate = poolHashrate + data.pool.hashrateSolo;
             }
 
             $.updateText('totalPoolsHashrate', $.getReadableHashRateString(totalHashrate) + '/sec');
@@ -208,8 +208,8 @@
         $.getBlocks();
         $.renderLastBlock();
     };
-    
-    
+
+
     $.getBlocks = function() {
         if (xhrGetBlocks) xhrGetBlocks.abort();
         xhrGetBlocks = $.ajax({
@@ -238,16 +238,16 @@
             }
         })
     };
-    
-    
+
+
     $.renderBlocks = function(blocksResults) {
         for (let i = 0; i < blocksResults.length; i++) {
             const block = blocksResults[i];
             difficulties.push(parseInt(block.difficulty));
         }
     };
-    
-    
+
+
     $.renderLastBlock = function() {
         $.ajax({
             url: api + '/json_rpc',
@@ -285,8 +285,8 @@
             }
         });
     };
-    
-    
+
+
     $.renderPoolRow = function (host, name, id, data, d) {
         // let agostring = $.timeago(d);
         let dateString = $.renderDate(d);
@@ -314,8 +314,8 @@
 
         return pools_row.join('');
     };
-    
-    
+
+
     $.calcAvgHashRate = function() {
         let sum = difficulties.reduce(add, 0);
         function add(a, b) {
@@ -328,8 +328,8 @@
         $.updateText('avgHashrate', $.getReadableHashRateString(avgDiff / blockTargetInterval));
         //updateText('blockSolveTime', getReadableTime(lastStats.difficulty / avgHashRate));
     };
-    
-    
+
+
     $.calcEstimateProfit = function() {
         try {
             let rateUnit = Math.pow(1024, parseInt($('#calcHashUnit').data('mul')));
@@ -366,8 +366,8 @@
 
         return apiUrl;
     };
-    
-    
+
+
     $.translateAPI2 = function (data) {
         return {
             'network': {
