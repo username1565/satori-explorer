@@ -5,6 +5,21 @@
     let txnLink = $('#txn-link');
     let outputsRow = $('#outputs-rows');
     let getTxnRequest;
+    let coinUtils = new TurtleCoinUtils.CryptoNote({
+        "coinUnitPlaces": 2,
+        "addressPrefix": 3934293,
+        "keccakIterations": 1,
+        "defaultNetworkFee": 10,
+        "fusionMinInputCount": 12,
+        "fusionMinInOutCountRatio": 4,
+        "mmMiningBlockVersion": 2,
+        "maximumOutputAmount": 100000000000,
+        "maximumOutputsPerTransaction": 90,
+        "maximumExtraSize": 1024,
+        "activateFeePerByteTransactions": false,
+        "feePerByte": 1.953125,
+        "feePerByteChunkSize": 256
+    });
 
     $(function () {
         currentPage = 'check';
@@ -72,7 +87,7 @@
     $.checkTxn = function(transactionResponse, privateKey, address, privateKeyType) {
         let txn = transactionResponse.tx;
         let txDetails = transactionResponse.txDetails;
-        let addrHex = cnBase58.decode(address);
+        let addrHex = coinUtils.decodeAddress(address);
         let hash = txDetails.hash;
         let results = {
             error: false,
@@ -93,7 +108,6 @@
         } else {
             let pub = addrHex.slice(m, e);
 
-            /*
             if (privateKeyType === "view") {
                 pub = $.pubKeyFromExtra(txn.extra);
             }
@@ -101,7 +115,6 @@
             if (!pub) {
                 results.error = "Unrecognized tx_extra format!";
             } else {
-                */
                 let der = cnUtil.generate_key_derivation(pub, privateKey);
                 let spk = addrHex.slice(s, m);
 
@@ -118,7 +131,7 @@
                     }
                 }
 
-            // }
+            }
         }
 
         console.log(results);

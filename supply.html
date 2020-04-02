@@ -27,95 +27,64 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top justify-content-between py-3 mb-3">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="/img/logo.png" alt="Cirquity">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link link-scroll" href="index.html">Block Explorer</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-scroll" href="check.html">Transactions</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-scroll" href="pools.html">Pools</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-scroll" href="nodes.html">Nodes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-scroll" href="supply.html">Supply</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-scroll" href="api.html">API</a>
-                        </li>
-                        <li class="nav-item dropdown no-caret">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right search-form shadow-lg" aria-labelledby="navbarDropdownMenuLink">
-                                <div class="input-group">
-                                    <input type="text" id="search-text" class="form-control" placeholder="Search by block height / hash, transaction hash, payment id" aria-label="Search" aria-describedby="search-button">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-success" type="button" id="search-button">Search</button>
-                                    </div>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top justify-content-between py-3 mb-3">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/img/logo.png" alt="Cirquity">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link link-scroll" href="index.html">Block Explorer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-scroll" href="check.html">Transactions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-scroll" href="pools.html">Pools</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-scroll" href="nodes.html">Nodes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-scroll active" href="supply.html">Supply <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-scroll" href="api.html">API</a>
+                    </li>
+                    <li class="nav-item dropdown no-caret">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right search-form shadow-lg" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="input-group">
+                                <input type="text" id="search-text" class="form-control" placeholder="Search by block height / hash, transaction hash, payment id" aria-label="Search" aria-describedby="search-button">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-success" type="button" id="search-button">Search</button>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
     <main>
         <section id="statistics" class="statistics">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card shadow-light">
-                            <div class="card-header font-weight-bold text-muted">
-                                <div class="row align-items-center">
-                                    <div class="col-12 col-md">
-                                        <h6 class="m-0">Payment ID</h6>
-                                    </div>
-                                    <div class="col-auto">
-                                        <h5 class="mb-0" id="payment-id"></h5>
-                                    </div>
-                                </div>
+                        <div class="card card-border shadow-light">
+                            <div class="card-header font-weight-bold no-border text-muted">
+                                <h6 class="m-0">Currency Supply and Emission</h6>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="tables" class="tables bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card card-border border-success shadow-lg">
-                            <div class="card-header font-weight-bold text-muted">
-                                <h6 class="m-0">Transactions with this Payment ID</h6>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Hash</th>
-                                            <th scope="col">Fee</th>
-                                            <th scope="col">Total Amount</th>
-                                            <th scope="col">Size</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="transactions-rows"></tbody>
-                                </table>
+                            <div class="card-body">
+                                <div id="supply" class="bigChart" style="min-height: 640px;">Loading...</div>
                             </div>
                         </div>
                     </div>
@@ -186,9 +155,12 @@
 
     <!--====== Javascript & Jquery ======-->
     <script src="/config.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/big-integer/1.6.42/BigInteger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/bootstrap.bundle.js"></script>
     <script src="/js/app.min.js"></script>
-    <script src="/js/paymentid.min.js"></script>
+    <script src="/js/supply.min.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-let api = 'https://api-block.cirquity.com';
+let api = 'https://api-explorer.cirquity.com';
 let donationAddress = 'cirqgEvJZj3bkP7Pwu8hrvhxPojoeVpJSg5sV9CU58oNLJWqJ3usg3kNNxb9ucX8Y5Spjwm1PBLRZ4QGEcn93LAdaWcTU9mQZaG';
 let blockTargetInterval = 30;
 let coinUnits = 100;

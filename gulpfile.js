@@ -56,6 +56,9 @@ function modules() {
   // Chart JS
   let chartJs = gulp.src('./node_modules/chart.js/dist/*.js')
       .pipe(gulp.dest('./vendor/chartjs'));
+  // Chart JS
+  let cryptoUtils = gulp.src('./node_modules/turtlecoin-utils/dist/*.js')
+      .pipe(gulp.dest('./vendor/utils'));
   // Font Awesome Webfonts
   let fontAwesomeWebfonts = gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/**/*')
     .pipe(gulp.dest('./vendor/fontawesome'));
