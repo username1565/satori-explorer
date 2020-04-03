@@ -59,8 +59,8 @@
             });
         });
     });
-    
-    
+
+
     $.getTxn = function(transactionHash, cb) {
         if (getTxnRequest) { getTxnRequest.abort(); }
 
@@ -82,8 +82,8 @@
             success: cb
         });
     };
-    
-    
+
+
     $.checkTxn = function(transactionResponse, privateKey, address, privateKeyType) {
         let txn = transactionResponse.tx;
         let txDetails = transactionResponse.txDetails;
@@ -95,33 +95,40 @@
             owned: [],
             unowned: [],
         };
-        console.log(addrHex);
+        console.log(addrHex.rawAddress, addrHex, txn);
         let s = 8, m = s + 64, e = m + 64; //offsets
+        console.log(s);
         if (privateKey.length !== 64 || $.validHex(privateKey) !== true) {
             results.error = "Invalid private key";
-        } else if (address.length !== 99 || (addrHex.slice(-s) !== cn_fast_hash(addrHex.slice(0, -s)).slice(0, s))) {
+        } else if (address.length !== 99 || (addrHex.rawAddress.slice(-s) !== cn_fast_hash(addrHex.rawAddress.slice(0, -s)).slice(0, s))) {
             results.error = "Bad address";
-        } else if (privateKeyType === 'view' && addrHex.slice(m, e) !== sec_key_to_pub(privateKey)) {
+        } else if (privateKeyType === 'view' && addrHex.rawAddress.slice(m, e) !== sec_key_to_pub(privateKey)) {
             results.error = "Secret View key does not match address";
         } else if (hash.length !== 64 || !$.validHex(hash)) {
             results.error = "Invalid TXN Hash";
         } else {
-            let pub = addrHex.slice(m, e);
+            let pub = addrHex.rawAddress.slice(m, e);
 
             if (privateKeyType === "view") {
-                pub = $.pubKeyFromExtra(txn.extra);
-            }
+                console.log(txn.extra);
+                /// pub = $.pubKeyFromExtra(txn.extra);
 
+                console.log('pub', pub);
+            }
+            /*
             if (!pub) {
                 results.error = "Unrecognized tx_extra format!";
             } else {
-                let der = cnUtil.generate_key_derivation(pub, privateKey);
-                let spk = addrHex.slice(s, m);
+                */
+                let der = generate_key_derivation(pub, privateKey);
+                let spk = addrHex.rawAddress.slice(s, m);
 
-                console.log(der, spk);
+                console.log('der=', der, ' spk', spk);
+                console.log(txn.vout.length);
 
                 for (let i = 0; i < txn.vout.length; i++) {
-                    let pubkey = cnUtil.derive_public_key(der, i, spk);
+                    let pubkey = derive_public_key(der, i, spk);
+                    console.log(pubkey);
                     let amount = txn.vout[i].amount / 100000000;
                     if (pubkey === txn.vout[i].target.data.key) {
                         results.total_owned += amount;
@@ -131,7 +138,7 @@
                     }
                 }
 
-            }
+            //}
         }
 
         console.log(results);
@@ -146,8 +153,8 @@
         while (bin.length > 0 && bin[0] === 0) {
             bin = bin.slice(1, bin.length);
         }
-        if (bin[0] === 1 && bin.length >= 65) {
-            pub = bin.slice(1, 65);
+        if (bin[0] === 1 && bin.length >= 48) {
+            pub = bin.slice(1, 48);
         }
         return pub;
     };

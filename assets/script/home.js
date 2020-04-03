@@ -59,12 +59,15 @@
         $.renderLastBlock();
         $.updateText('networkHeight', $.localizeNumber(lastStats.height.toString()));
 
-        let forkDate = new Date((new Date()).getFullYear(), (new Date()).getMonth(), (new Date()).getDate(), (new Date()).getHours(), (new Date()).getMinutes() + ((205000 - lastStats.height) * 2));
-        $.updateText('nextFork', lastStats.last_known_block_index < 205001 ? $.renderDate(forkDate) : "to be announced...");
+        let forkDays = (nextForkHeight - lastStats.height) / (24 * 60 * 60 / coinDifficultyTarget);
+        let forkDate = new Date();
+        forkDate.setDate(forkDate.getDate() + forkDays);
+
+        $.updateText('nextFork', lastStats.last_known_block_index < (nextForkHeight+1) ? $.renderDate(forkDate) : "to be announced...");
         $.updateText('networkTransactions', $.localizeNumber(lastStats.tx_count.toString()));
         $.updateText('networkHashrate', $.getReadableHashRateString(lastStats.difficulty / blockTargetInterval));
         $.updateText('networkDifficulty', $.getReadableDifficultyString(lastStats.difficulty, 0).toString());
-        //$("time.timeago").timeago();
+
         $.getPoolTransactions();
         let currHeight = $('#blocks-rows').children().first().data('height');
 

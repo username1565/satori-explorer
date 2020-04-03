@@ -5,5 +5,7 @@ let coinUnits = 100;
 let coinTotalSupply = 100000000000000;
 let coinDisplayDecimals = 2;
 let coinEmissionSpeed = 25;
+let coinDifficultyTarget = 30;
+let nextForkHeight = 500000;
 let symbol = 'CIRQ';
 let refreshDelay = 30000;
