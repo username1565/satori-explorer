@@ -91,7 +91,7 @@
 
         if (!details.paymentId) {
             $('#div_transaction_paymentId').addClass('d-none');
-            $('#div_transaction_paymentIdDecipher').addClass('d-none');
+            //$('#div_transaction_paymentIdDecipher').addClass('d-none');
         }
 
         $.updateText('transaction-size', $.localizeNumber(details.size));

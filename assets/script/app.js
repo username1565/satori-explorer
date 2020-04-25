@@ -56,7 +56,6 @@ let numberFormatter = new Intl.NumberFormat('en-US');
             }
 
             e.preventDefault();
-
         });
 
 
