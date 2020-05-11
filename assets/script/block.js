@@ -12,8 +12,8 @@
             }
         }, 10);
     });
-    
-    
+
+
     $.getBlock = function(){
         if (xhrGetBlock) xhrGetBlock.abort();
         const searchBlk = $.parseJSON(sessionStorage.getItem('searchBlock'));
@@ -124,7 +124,7 @@
 
 
     $.getTransactionCells = function(transaction){
-        return '<th scope="row">' + $.formatPaymentLink(transaction.hash) + '</th>' +
+        return '<th scope="row" class="hash-code">' + $.formatPaymentLink(transaction.hash) + '</th>' +
             '<td>' + $.getReadableCoins(transaction.fee, 4, true) + '</td>' +
             '<td>' + $.getReadableCoins(transaction.amount_out, 4, true) + '</td>' +
             '<td>' + $.localizeNumber(transaction.size) + '</td>';

@@ -150,8 +150,14 @@
     };
 
 
+    $.sortInputs = function(inputs) {
+        return inputs.sort((a, b)=> a['value'].amount - b['value'].amount)
+    }
+
+
     $.renderInputs = function (inputResults) {
         const $inputsRows = $('#inputs-rows');
+        inputResults = $.sortInputs(inputResults);
 
         for (let i = 0; i < inputResults.length; i++) {
             let input = inputResults[i];
@@ -222,13 +228,13 @@
 
     $.getInputCells = function (input) {
         return '<th scope="row">' + $.getReadableCoins(input.value.amount) + '</th>' +
-            '<td>' + input.value.k_image + '</td>';
+            '<td class="image-code">' + input.value.k_image + '</td>';
     };
 
 
     $.getOutputCells = function (output) {
         return '<th scope="row">' + $.getReadableCoins(output.amount) + '</th>' +
-            '<td>' + output.target.data.key + '</td>';
+            '<td class="key-code">' + output.target.data.key + '</td>';
     };
 
 

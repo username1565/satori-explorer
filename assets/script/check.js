@@ -88,6 +88,7 @@
         let txn = transactionResponse.tx;
         let txDetails = transactionResponse.txDetails;
         let addrHex = coinUtils.decodeAddress(address);
+        // let decodeHash = coinUtils.decodeAddress(txDetails.hash);
         let hash = txDetails.hash;
         let results = {
             error: false,
@@ -95,6 +96,8 @@
             owned: [],
             unowned: [],
         };
+
+        // console.log(decodeHash);
         console.log(addrHex.rawAddress, addrHex, txn);
         let s = 8, m = s + 64, e = m + 64; //offsets
         console.log(s);
@@ -111,7 +114,8 @@
 
             if (privateKeyType === "view") {
                 console.log(txn.extra);
-                /// pub = $.pubKeyFromExtra(txn.extra);
+
+                pub = $.pubKeyFromExtra(hextobin(txn.extra));
 
                 console.log('pub', pub);
             }
@@ -128,7 +132,7 @@
 
                 for (let i = 0; i < txn.vout.length; i++) {
                     let pubkey = derive_public_key(der, i, spk);
-                    console.log(pubkey);
+                    console.log(pubkey, txn.vout[i].target.data.key);
                     let amount = txn.vout[i].amount / 100000000;
                     if (pubkey === txn.vout[i].target.data.key) {
                         results.total_owned += amount;
@@ -149,7 +153,7 @@
 
     $.pubKeyFromExtra = function(bin) {
         let pub = false;
-        console.log(bin, bin.length, bin[0]);
+        console.log('bin', bin);
         while (bin.length > 0 && bin[0] === 0) {
             bin = bin.slice(1, bin.length);
         }

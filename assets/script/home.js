@@ -207,7 +207,7 @@
         let columns =
             '<th scope="row" class="height">' + $.localizeNumber(block.height) + '</th>' +
             '<td class="size">' + $.localizeNumber(block.cumul_size) + '</td>' +
-            '<th scope="row">' + $.formatBlockLink(block.hash) + '</th>' +
+            '<th scope="row" class="hash-code">' + $.formatBlockLink(block.hash) + '</th>' +
             '<td class="blk-diff">' + $.localizeNumber(block.difficulty) + '</td>' +
             '<td class="txses">' + $.localizeNumber(block.tx_count) + '</td>' +
             '<td class="date-time">' + $.formatDate(block.timestamp) + '</td>';
@@ -265,7 +265,7 @@
                             '<th scope="row">' + $.getReadableCoins(amount, 2, true) + '</th>' +
                             '<td>' + $.getReadableCoins(fee, 2, true) + '</td>' +
                             '<td>' + $.localizeNumber(size) + '</td>' +
-                            '<th scope="row">' + $.formatPaymentLink(hash) + '</th>';
+                            '<th scope="row" class="hash-code">' + hash + '</th>';
                         row.innerHTML = columns;
                         $(txsRows).append(row);
                         //$(row).find('.mtx-ago').timeago('update', new Date(timestamp * 1000).toISOString()); We can re-enable this after a timestamp is added to the mem_pool json

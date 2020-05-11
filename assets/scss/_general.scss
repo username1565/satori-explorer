@@ -50,3 +50,7 @@ label {
 .shadow-light {
   box-shadow: 0 1.5rem 4rem rgba($body-color, .05);
 }
+
+.hash-code, .address-code, .key-code, .image-code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
