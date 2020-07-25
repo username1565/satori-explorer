@@ -1,18 +1,18 @@
-# Cirquity Blockchain Explorer
-Block explorer for Cirquity, CryptoNote based cryptocurrency.
+# Satori Blockchain Explorer
+Block explorer for Satori, CryptoNote based cryptocurrency.
 
 #### Installation
 
 1) It takes data from daemon cirquityd. It should be accessible from the Internet. Run cirquityd with open port as follows:
 ```bash
-./cirquityd --enable-cors="*" --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=18128
+./satorid --enable-cors="*" --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=13337
 ```
 2) Just upload to your website and change 'api' variable in config.js to point to your daemon.
 
 
 ### Development
 Devs:
-    @deeterd
+    @meaa
 
 ### Note
 Forked from Turtlecoin Block Explorer
