@@ -1,8 +1,8 @@
 <?php
-$node = 'https://api-block.cirquity.com';
+$node = 'https://api-block.satori.gold';
 return [
-    'api' => 'https://api-block.cirquity.com',
-    'blockTargetInterval' => 30,
+    'api' => 'https://api-block.satori.gold',
+    'blockTargetInterval' => 300,
     'coinUnits' => 100,
-    'coinDecimals' => 2
+    'coinDecimals' => 9
 ];
