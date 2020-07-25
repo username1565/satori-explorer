@@ -3,7 +3,7 @@ Block explorer for Satori, CryptoNote based cryptocurrency.
 
 #### Installation
 
-1) It takes data from daemon cirquityd. It should be accessible from the Internet. Run cirquityd with open port as follows:
+1) It takes data from daemon satorid. It should be accessible from the Internet. Run satorid with open port as follows:
 ```bash
 ./satorid --enable-cors="*" --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=13337
 ```
