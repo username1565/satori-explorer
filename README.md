@@ -5,7 +5,7 @@ Block explorer for Satori, CryptoNote based cryptocurrency.
 
 1) It takes data from daemon satorid. It should be accessible from the Internet. Run satorid with open port as follows:
 ```bash
-./satorid --enable-cors="*" --enable_blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=13337
+./Satorid --enable-cors="*" --enable-blockexplorer --rpc-bind-ip=0.0.0.0 --rpc-bind-port=17898
 ```
 2) Just upload to your website and change 'api' variable in config.js to point to your daemon.
 
